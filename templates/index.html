@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>App Natação</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 
     <main class="container">
@@ -16,11 +18,15 @@
 
             <form action="/salvar" method="POST">
 
-                <input type="date" name="data_treino" required>
+                <input
+                    type="date"
+                    name="data_treino"
+                    required
+                >
 
-                <input 
-                    type="text" 
-                    name="titulo" 
+                <input
+                    type="text"
+                    name="titulo"
                     placeholder="Título do treino"
                     required
                 >
@@ -54,8 +60,8 @@
 
                 <label>Número de voltas</label>
 
-                <input 
-                    type="number" 
+                <input
+                    type="number"
                     name="voltas"
                     placeholder="Quantidade de voltas"
                     required
@@ -66,35 +72,51 @@
                 <div class="equipamentos">
 
                     <label>
-                        <input type="checkbox" name="equipamentos" value="Palmar">
+                        <input
+                            type="checkbox"
+                            name="equipamentos"
+                            value="Palmar"
+                        >
                         Palmar
                     </label>
 
                     <label>
-                        <input type="checkbox" name="equipamentos" value="Pullbuoy">
+                        <input
+                            type="checkbox"
+                            name="equipamentos"
+                            value="Pullbuoy"
+                        >
                         Pullbuoy
                     </label>
 
                     <label>
-                        <input type="checkbox" name="equipamentos" value="Prancha">
+                        <input
+                            type="checkbox"
+                            name="equipamentos"
+                            value="Prancha"
+                        >
                         Prancha
                     </label>
 
                     <label>
-                        <input type="checkbox" name="equipamentos" value="Pé de pato">
+                        <input
+                            type="checkbox"
+                            name="equipamentos"
+                            value="Pé de pato"
+                        >
                         Pé de pato
                     </label>
 
                 </div>
 
-                <input 
-                    type="number" 
+                <input
+                    type="number"
                     name="duracao_minutos"
                     placeholder="Duração em minutos"
                     required
                 >
 
-                <textarea 
+                <textarea
                     name="observacoes"
                     placeholder="Observações"
                 ></textarea>
@@ -107,7 +129,58 @@
 
         </div>
 
+        <div class="historico">
+
+            <h2>Histórico de Treinos</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Data</th>
+                        <th>Título</th>
+                        <th>Tipo</th>
+                        <th>Piscina</th>
+                        <th>Voltas</th>
+                        <th>Distância</th>
+                        <th>Duração</th>
+                        <th>Ritmo (100m)</th>
+                        <th>Equipamentos</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for treino in treinos %}
+
+                    <tr>
+
+                        <td>{{ treino.data_treino }}</td>
+                        <td>{{ treino.titulo }}</td>
+                        <td>{{ treino.estilo }}</td>
+                        <td>{{ treino.tamanho_piscina }}m</td>
+                        <td>{{ treino.voltas }}</td>
+                        <td>{{ treino.distancia_metros }}m</td>
+                        <td>{{ treino.duracao_minutos }} min</td>
+                        <td>{{ treino.pace }}</td>
+                        <td>{{ treino.equipamentos }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
     </main>
 
 </body>
+
 </html>

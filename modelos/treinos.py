@@ -9,6 +9,7 @@ def cadastrar_treino(
     voltas,
     distancia_metros,
     duracao_minutos,
+    pace,
     observacoes,
     equipamentos
 ):
@@ -25,10 +26,11 @@ def cadastrar_treino(
             voltas,
             distancia_metros,
             duracao_minutos,
+            pace,
             observacoes,
             equipamentos
         )
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
 
     valores = (
@@ -39,6 +41,7 @@ def cadastrar_treino(
         voltas,
         distancia_metros,
         duracao_minutos,
+        pace,
         observacoes,
         equipamentos
     )
@@ -48,3 +51,21 @@ def cadastrar_treino(
 
     cursor.close()
     conexao.close()
+
+
+def listar_treinos():
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+
+    sql = """
+        SELECT * FROM treinos
+        ORDER BY data_treino DESC
+    """
+
+    cursor.execute(sql)
+    treinos = cursor.fetchall()
+
+    cursor.close()
+    conexao.close()
+
+    return treinos

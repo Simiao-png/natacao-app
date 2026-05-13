@@ -54,3 +54,31 @@ header p {
     text-decoration: none;
     font-weight: bold;
 }
+
+.historico {
+    margin-left: 30px;
+    width: 800px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1e293b;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #334155;
+}
+
+th {
+    background: #0f172a;
+    color: #38bdf8;
+}
+
+td {
+    color: #e2e8f0;
+}
