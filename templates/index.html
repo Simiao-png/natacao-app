@@ -2,35 +2,111 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App Natação</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-    <header>
-        <h1>🏊 App Natação</h1>
-        <p>Controle sua evolução dentro da piscina.</p>
-    </header>
-
     <main class="container">
-        <div class="card">
-            <h2>Cadastrar treino</h2>
-            <p>Registre distância, tempo, voltas e observações.</p>
-            <a href="#">Acessar</a>
-        </div>
 
         <div class="card">
-            <h2>Histórico</h2>
-            <p>Veja todos os treinos já cadastrados.</p>
-            <a href="#">Ver treinos</a>
+
+            <h1>Cadastro de Treino</h1>
+
+            <form action="/salvar" method="POST">
+
+                <input type="date" name="data_treino" required>
+
+                <input 
+                    type="text" 
+                    name="titulo" 
+                    placeholder="Título do treino"
+                    required
+                >
+
+                <label>Tipo de treino</label>
+
+                <select name="estilo">
+
+                    <option value="Crawl">Crawl</option>
+                    <option value="Costas">Costas</option>
+                    <option value="Peito">Peito</option>
+                    <option value="Borboleta">Borboleta</option>
+                    <option value="Medley">Medley</option>
+
+                    <option value="Educativo">Educativo</option>
+                    <option value="Pernada">Pernada</option>
+                    <option value="Braçada">Braçada</option>
+                    <option value="Técnica">Técnica</option>
+
+                </select>
+
+                <label>Tamanho da piscina</label>
+
+                <select name="tamanho_piscina">
+
+                    <option value="12.5">12.5m</option>
+                    <option value="25">25m</option>
+                    <option value="50">50m</option>
+
+                </select>
+
+                <label>Número de voltas</label>
+
+                <input 
+                    type="number" 
+                    name="voltas"
+                    placeholder="Quantidade de voltas"
+                    required
+                >
+
+                <label>Equipamentos</label>
+
+                <div class="equipamentos">
+
+                    <label>
+                        <input type="checkbox" name="equipamentos" value="Palmar">
+                        Palmar
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="equipamentos" value="Pullbuoy">
+                        Pullbuoy
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="equipamentos" value="Prancha">
+                        Prancha
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="equipamentos" value="Pé de pato">
+                        Pé de pato
+                    </label>
+
+                </div>
+
+                <input 
+                    type="number" 
+                    name="duracao_minutos"
+                    placeholder="Duração em minutos"
+                    required
+                >
+
+                <textarea 
+                    name="observacoes"
+                    placeholder="Observações"
+                ></textarea>
+
+                <button type="submit">
+                    Salvar treino
+                </button>
+
+            </form>
+
         </div>
 
-        <div class="card">
-            <h2>Evolução</h2>
-            <p>Acompanhe seu progresso com métricas.</p>
-            <a href="#">Ver evolução</a>
-        </div>
     </main>
 
 </body>
