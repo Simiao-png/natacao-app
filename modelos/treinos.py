@@ -70,23 +70,6 @@ def listar_treinos():
 
     return treinos
 
-def buscar_treino_por_id(id):
-    conexao = conectar()
-    cursor = conexao.cursor(dictionary=True)
-
-    sql = """
-        SELECT * FROM treinos
-        WHERE id = %s
-    """
-
-    cursor.execute(sql, (id,))
-
-    treino = cursor.fetchone()
-
-    cursor.close()
-    conexao.close()
-
-    return treino
 
 def buscar_treino_por_id(id):
     conexao = conectar()
@@ -98,10 +81,78 @@ def buscar_treino_por_id(id):
     """
 
     cursor.execute(sql, (id,))
-
     treino = cursor.fetchone()
 
     cursor.close()
     conexao.close()
 
     return treino
+
+
+def atualizar_treino(
+    id,
+    data_treino,
+    titulo,
+    estilo,
+    tamanho_piscina,
+    voltas,
+    distancia_metros,
+    duracao_minutos,
+    pace,
+    observacoes,
+    equipamentos
+):
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    sql = """
+        UPDATE treinos
+        SET
+            data_treino = %s,
+            titulo = %s,
+            estilo = %s,
+            tamanho_piscina = %s,
+            voltas = %s,
+            distancia_metros = %s,
+            duracao_minutos = %s,
+            pace = %s,
+            observacoes = %s,
+            equipamentos = %s
+        WHERE id = %s
+    """
+
+    valores = (
+        data_treino,
+        titulo,
+        estilo,
+        tamanho_piscina,
+        voltas,
+        distancia_metros,
+        duracao_minutos,
+        pace,
+        observacoes,
+        equipamentos,
+        id
+    )
+
+    cursor.execute(sql, valores)
+    conexao.commit()
+
+    cursor.close()
+    conexao.close()
+
+
+def excluir_treino_por_id(id):
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    sql = """
+        DELETE FROM treinos
+        WHERE id = %s
+    """
+
+    cursor.execute(sql, (id,))
+    conexao.commit()
+
+    cursor.close()
+    conexao.close()

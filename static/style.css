@@ -1,235 +1,1504 @@
-* {
-    box-sizing: border-box;
-}
-
-body {
+body{
     margin: 0;
     font-family: Arial, sans-serif;
     background: #081229;
     color: white;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 40px;
-    padding: 40px;
-}
+/* =========================
+HEADER
+========================= */
 
-.card,
-.detalhe-card {
-    background: #1a2740;
-    padding: 40px;
-    border-radius: 20px;
-    color: white;
-}
-
-.card {
-    width: 300px;
+header{
     text-align: center;
+    padding: 50px 20px 20px;
 }
 
-.card h1 {
-    font-size: 32px;
-    margin-bottom: 25px;
-}
-
-input,
-select,
-textarea,
-button {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 8px;
-    border-radius: 6px;
-    border: none;
-}
-
-button,
-.btn-voltar {
-    background: #00bfff;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.equipamentos {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    margin-bottom: 10px;
-}
-
-.equipamentos label {
-    font-size: 13px;
-}
-
-.equipamentos input {
-    width: auto;
-}
-
-.historico {
-    width: 850px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #1e293b;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-th,
-td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #334155;
-}
-
-th {
-    background: #0f172a;
-    color: #00bfff;
-}
-
-td {
-    color: #e2e8f0;
-}
-
-td a {
-    color: #00bfff;
-    font-weight: bold;
-}
-
-.detalhe-container {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-}
-
-.detalhe-card {
-    width: 900px;
-}
-
-.detalhe-card h1 {
-    font-size: 56px;
-    margin-bottom: 10px;
-}
-
-.data {
-    color: #8fa8d6;
-    margin-bottom: 40px;
-}
-
-.metricas {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 40px;
-}
-
-.metrica {
-    flex: 1;
-    background: #243552;
-    padding: 25px;
-    border-radius: 16px;
-    text-align: center;
-}
-
-.metrica h2 {
+header h1{
     font-size: 48px;
-    color: #00bfff;
     margin-bottom: 10px;
 }
 
-.metrica span {
+header p{
     color: #9bb4d4;
     font-size: 18px;
 }
 
-.info-grid {
+/* =========================
+PÁGINA INICIAL
+========================= */
+
+.container{
+    width: 95%;
+    margin: auto;
+
+    display: flex;
+    gap: 35px;
+
+    align-items: flex-start;
+
+    padding-bottom: 40px;
+}
+
+.card{
+    width: 320px;
+
+    background: #1a2740;
+
+    padding: 35px;
+
+    border-radius: 24px;
+
+    box-sizing: border-box;
+
+    position: sticky;
+    top: 30px;
+}
+
+.card h2{
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.card input,
+.card select,
+.card textarea{
+    width: 100%;
+
+    padding: 14px;
+
+    margin-bottom: 16px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #f1f5f9;
+
+    box-sizing: border-box;
+
+    font-size: 15px;
+}
+
+.card textarea{
+    resize: none;
+    height: 90px;
+}
+
+.card label{
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #dbeafe;
+
+    font-weight: bold;
+}
+
+.checkbox-group{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 30px;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
 }
 
-.info-box,
-.observacoes-box {
-    background: #243552;
-    padding: 26px;
-    border-radius: 16px;
+.checkbox-group label{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-weight: normal;
 }
 
-.info-box {
-    min-height: 110px;
-}
-
-.info-box strong {
-    display: block;
-    color: #00bfff;
-    font-size: 18px;
-    margin-bottom: 16px;
-}
-
-.info-box p {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0;
-}
-
-.observacoes-box {
-    margin-bottom: 30px;
-}
-
-.btn-voltar {
-    display: inline-block;
-    padding: 12px 20px;
-    border-radius: 10px;
-}
-
-.container-calendario {
-    width: 90%;
-    margin: 40px auto;
-}
-
-.calendario {
+.card button{
     width: 100%;
+
+    padding: 14px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #00bfff;
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.card button:hover{
+    background: #08a6dd;
+}
+
+/* =========================
+HISTÓRICO
+========================= */
+
+.historico{
+    flex: 1;
+}
+
+.historico h1{
+    margin-top: 20px;
+    margin-bottom: 25px;
+
+    font-size: 42px;
+}
+
+table{
+    width: 100%;
+
     border-collapse: collapse;
-    background: #1e293b;
-    border-radius: 16px;
+
+    background: #1a2740;
+
+    border-radius: 20px;
+
     overflow: hidden;
 }
 
-.calendario th {
-    background: #0f172a;
+th{
+    background: #101b30;
+
     color: #00bfff;
-    padding: 14px;
+
+    padding: 18px;
+
+    text-align: left;
+
+    font-size: 15px;
 }
 
-.calendario td {
-    width: 14.28%;
-    height: 120px;
-    vertical-align: top;
-    padding: 10px;
-    border: 1px solid #334155;
+td{
+    padding: 18px;
+
+    border-bottom: 1px solid #2d4266;
+
+    color: #e2e8f0;
 }
 
-.treino-link {
+td a{
+    color: #00bfff;
+    font-weight: bold;
+}
+
+tr:hover{
+    background: #223250;
+}
+
+/* =========================
+DETALHE TREINO
+========================= */
+
+.detalhe-container{
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px;
+
+    box-sizing: border-box;
+}
+
+.detalhe-card{
+    width: 850px;
+
+    background: #1a2740;
+
+    padding: 40px;
+
+    border-radius: 24px;
+
+    box-sizing: border-box;
+}
+
+.detalhe-card h1{
+    font-size: 56px;
+
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.data{
+    color: #8fa8d6;
+
+    font-size: 18px;
+
+    margin-bottom: 40px;
+}
+
+/* =========================
+MÉTRICAS
+========================= */
+
+.metricas{
+    display: flex;
+
+    gap: 20px;
+
+    margin-bottom: 35px;
+}
+
+.metrica{
+    flex: 1;
+
+    background: #243552;
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    text-align: center;
+}
+
+.metrica h2{
+    margin: 0 0 12px;
+
+    font-size: 50px;
+
+    color: #00bfff;
+}
+
+.metrica span{
+    color: #9bb4d4;
+
+    font-size: 18px;
+}
+
+/* =========================
+INFORMAÇÕES
+========================= */
+
+.info-grid{
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+.info-box{
+    background: #243552;
+
+    padding: 28px;
+
+    border-radius: 18px;
+
+    min-height: 120px;
+
+    box-sizing: border-box;
+}
+
+.info-box strong{
     display: block;
-    margin-top: 8px;
-    padding: 8px;
-    background: #2563eb;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 13px;
+
+    color: #00bfff;
+
+    font-size: 18px;
+
+    margin-bottom: 16px;
 }
 
-.treino-link:hover {
-    background: #00bfff;
-    color: #0f172a;
+.info-box p{
+    margin: 0;
+
+    font-size: 24px;
+
+    font-weight: bold;
 }
+
+.observacoes-box{
+    background: #243552;
+
+    padding: 28px;
+
+    border-radius: 18px;
+
+    margin-bottom: 30px;
+}
+
+.observacoes-box strong{
+    display: block;
+
+    color: #00bfff;
+
+    margin-bottom: 16px;
+
+    font-size: 18px;
+}
+
+.observacoes-box p{
+    margin: 0;
+
+    font-size: 20px;
+}
+
+/* =========================
+BOTÃO VOLTAR
+========================= */
+
+.btn-voltar{
+    display: inline-block;
+
+    padding: 14px 22px;
+
+    border-radius: 12px;
+
+    background: #00bfff;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.btn-voltar:hover{
+    background: #08a6dd;
+}
+
+/* =========================
+CALENDÁRIO
+========================= */
+
+.container-calendario{
+    width: 95%;
+    margin: auto;
+    padding: 50px 0;
+}
+
+.topo-calendario{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 25px;
+
+    margin-bottom: 30px;
+}
+
+.topo-calendario h1{
+    margin: 0;
+
+    font-size: 42px;
+
+    letter-spacing: 1px;
+
+    color: white;
+}
+
+.btn-mes{
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #1a2740;
+
+    border: none;
+    border-radius: 50%;
+
+    text-decoration: none;
+
+    color: #00bfff;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn-mes:hover{
+    background: #243552;
+
+    transform: scale(1.08);
+
+    color: white;
+}
+
+.calendario{
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: #1a2740;
+
+    border-radius: 24px;
+
+    overflow: hidden;
+}
+
+.calendario th{
+    background: #101b30;
+
+    color: #00bfff;
+
+    padding: 18px;
+
+    text-align: center;
+}
+
+.calendario td{
+    width: 14.2%;
+    height: 150px;
+
+    vertical-align: top;
+
+    padding: 10px;
+
+    border: 1px solid #2d4266;
+
+    box-sizing: border-box;
+}
+
+.calendario strong{
+    display: block;
+
+    margin-bottom: 12px;
+
+    font-size: 18px;
+}
+
+.treino-link{
+    display: block;
+
+    width: 100%;
+
+    background: #3164e0;
+
+    color: white;
+
+    border: none;
+
+    text-decoration: none;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.treino-link:hover{
+    background: #4a7dff;
+}
+
+/* =========================
+MODAL
+========================= */
+
+.modal{
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.7);
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 999;
+}
+
+.modal-content{
+    width: 700px;
+    max-width: 90%;
+
+    background: #1a2740;
+
+    padding: 35px;
+
+    border-radius: 24px;
+
+    position: relative;
+
+    box-sizing: border-box;
+
+    color: white;
+
+    animation: aparecer 0.2s ease;
+}
+
+.close-modal{
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    font-size: 28px;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.close-modal:hover{
+    color: #00bfff;
+}
+
+.modal-content h2{
+    margin-top: 0;
+
+    margin-bottom: 25px;
+
+    font-size: 34px;
+}
+
+.modal-info p{
+    margin-bottom: 16px;
+
+    font-size: 18px;
+
+    color: #dbeafe;
+}
+
+.modal-info strong{
+    color: #00bfff;
+}
+
+/* =========================
+ANIMAÇÃO
+========================= */
+
+@keyframes aparecer{
+
+    from{
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* =========================
+RESPONSIVO
+========================= */
+
+@media(max-width: 900px){
+
+    .container{
+        flex-direction: column;
+    }
+
+    .card{
+        width: 100%;
+
+        position: static;
+    }
+
+    .metricas{
+        flex-direction: column;
+    }
+
+    .info-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .calendario td{
+        height: 120px;
+    }
+
+    .topo-calendario h1{
+        font-size: 28px;
+    }
+
+}
+
+@media(max-width: 700px){
+
+    .calendario th{
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .calendario td{
+        height: 100px;
+
+        padding: 6px;
+    }
+
+    .treino-link{
+        font-size: 11px;
+
+        padding: 6px;
+    }
+
+    .modal-content{
+        padding: 25px;
+    }
+
+    .modal-content h2{
+        font-size: 26px;
+    }
+
+}
+
+/* =========================
+MODAL NOVO
+========================= */
+
+.treino-modal{
+    width: 850px;
+    max-width: 95%;
+
+    background: #1a2740;
+
+    border-radius: 24px;
+
+    padding: 40px;
+
+    color: white;
+
+    box-sizing: border-box;
+}
+
+.treino-modal h2{
+    font-size: 52px;
+
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.metricas-modal{
+    display: flex;
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+.metrica-modal{
+    flex: 1;
+
+    background: #243552;
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    text-align: center;
+}
+
+.metrica-modal h3{
+    margin: 0 0 10px;
+
+    font-size: 42px;
+
+    color: #00bfff;
+}
+
+.metrica-modal span{
+    color: #9bb4d4;
+
+    font-size: 18px;
+}
+
+.info-grid-modal{
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+.info-box-modal{
+    background: #243552;
+
+    padding: 25px;
+
+    border-radius: 18px;
+}
+
+.info-box-modal strong{
+    display: block;
+
+    color: #00bfff;
+
+    margin-bottom: 15px;
+
+    font-size: 18px;
+}
+
+.info-box-modal p{
+    margin: 0;
+
+    font-size: 26px;
+
+    font-weight: bold;
+}
+
+.observacoes-modal{
+    background: #243552;
+
+    padding: 25px;
+
+    border-radius: 18px;
+}
+
+.observacoes-modal strong{
+    display: block;
+
+    color: #00bfff;
+
+    margin-bottom: 15px;
+
+    font-size: 18px;
+}
+
+.observacoes-modal p{
+    margin: 0;
+
+    font-size: 20px;
+}
+
+@media(max-width: 768px){
+
+    .metricas-modal{
+        flex-direction: column;
+    }
+
+    .info-grid-modal{
+        grid-template-columns: 1fr;
+    }
+
+    .treino-modal h2{
+        font-size: 36px;
+    }
+
+}
+
+.treino-modal h2{
+    font-size: 56px !important;
+
+    margin-top: 0;
+
+    margin-bottom: 10px;
+
+    color: white;
+}
+
+.info-box-modal p{
+    font-size: 24px;
+
+    font-weight: bold;
+
+    color: white;
+}
+
+.observacoes-modal p{
+    font-size: 20px;
+
+    color: white;
+}
+
+.metrica-modal h3{
+    font-size: 50px;
+
+    color: #00bfff;
+
+    margin: 0 0 12px;
+}
+
+.acoes-hover{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: 0.2s;
+}
+
+.linha-treino:hover .acoes-hover{
+    opacity: 1;
+    visibility: visible;
+}
+
+.acao-btn{
+    background: transparent;
+    border: none;
+
+    color: #9bb4d4;
+
+    font-size: 16px;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+
+.acao-btn:hover{
+    color: #00bfff;
+    transform: scale(1.15);
+}
+
+.acao-btn.excluir:hover{
+    color: #ff4d4d;
+}
+
+.acoes-hover form{
+    margin: 0;
+}
+
+/* =========================
+EDITAR TREINO
+========================= */
+
+.editar-page{
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px;
+
+    background: #000f2f;
+}
+
+.editar-container{
+    width: 100%;
+    max-width: 950px;
+
+    background: #1b2945;
+
+    padding: 40px;
+
+    border-radius: 24px;
+
+    box-sizing: border-box;
+}
+
+.editar-container h1{
+    font-size: 56px;
+
+    color: white;
+
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.editar-form{
+    display: flex;
+    flex-direction: column;
+
+    gap: 25px;
+}
+
+.form-grid{
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.form-group label{
+    color: #00bfff;
+
+    font-weight: bold;
+
+    font-size: 16px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #2b3d61;
+
+    color: white;
+
+    font-size: 16px;
+
+    box-sizing: border-box;
+}
+
+.cadastro-form .equipamentos-grid{
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.cadastro-form .equipamento-item{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    background: #2b3d61;
+
+    padding: 10px 14px;
+
+    border-radius: 999px;
+
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    width: fit-content;
+}
+
+.editar-acoes{
+    display: flex;
+
+    gap: 20px;
+
+    margin-top: 10px;
+}
+
+.btn-salvar{
+    background: #00bfff;
+
+    color: white;
+
+    border: none;
+
+    padding: 14px 24px;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+@media(max-width: 768px){
+
+    .form-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .equipamentos-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .editar-container h1{
+        font-size: 40px;
+    }
+
+}
+
+/* =========================
+CADASTRO TREINO
+========================= */
+
+.cadastro-card{
+    width: 420px;
+}
+
+.cadastro-form{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.cadastro-form .form-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+}
+
+.cadastro-form .form-group{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cadastro-form label{
+    color: #00bfff;
+    font-weight: bold;
+}
+
+.cadastro-form input,
+.cadastro-form select,
+.cadastro-form textarea{
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #2b3d61;
+
+    color: white;
+
+    font-size: 15px;
+
+    box-sizing: border-box;
+}
+
+.cadastro-form input::placeholder,
+.cadastro-form textarea::placeholder{
+    color: #b7c4db;
+}
+
+.cadastro-form textarea{
+    resize: none;
+}
+
+.cadastro-form .equipamentos-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.cadastro-form .equipamento-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #2b3d61;
+
+    padding: 14px;
+
+    border-radius: 12px;
+
+    color: white;
+    font-weight: bold;
+}
+
+.btn-salvar{
+    background: #00bfff;
+
+    color: white;
+
+    border: none;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn-salvar:hover{
+    transform: translateY(-2px);
+    background: #00a6e6;
+}
+
+.cadastro-form .equipamento-item input{
+    width: 14px;
+    height: 14px;
+
+    margin: 0;
+}
+
+
+
+.calendario th{
+    background: #101b30;
+
+    color: #00bfff;
+
+    padding: 18px;
+
+    text-align: center;
+}
+
+.calendario td{
+    width: 14.2%;
+    height: 150px;
+
+    vertical-align: top;
+
+    padding: 10px;
+
+    border: 1px solid #2d4266;
+
+    box-sizing: border-box;
+}
+
+.calendario strong{
+    display: block;
+
+    margin-bottom: 12px;
+
+    font-size: 18px;
+}
+
+.treino-link{
+    display: block;
+
+    width: 100%;
+
+    background: #3164e0;
+
+    color: white;
+
+    border: none;
+
+    text-decoration: none;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.treino-link:hover{
+    background: #4a7dff;
+}
+
+/* =========================
+MODAL
+========================= */
+
+.modal{
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.7);
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 999;
+}
+
+.modal-content{
+    width: 700px;
+    max-width: 90%;
+
+    background: #1a2740;
+
+    padding: 35px;
+
+    border-radius: 24px;
+
+    position: relative;
+
+    box-sizing: border-box;
+
+    color: white;
+
+    animation: aparecer 0.2s ease;
+}
+
+.close-modal{
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    font-size: 28px;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.close-modal:hover{
+    color: #00bfff;
+}
+
+.modal-content h2{
+    margin-top: 0;
+
+    margin-bottom: 25px;
+
+    font-size: 34px;
+}
+
+.modal-info p{
+    margin-bottom: 16px;
+
+    font-size: 18px;
+
+    color: #dbeafe;
+}
+
+.modal-info strong{
+    color: #00bfff;
+}
+
+/* =========================
+ANIMAÇÃO
+========================= */
+
+@keyframes aparecer{
+
+    from{
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* =========================
+RESPONSIVO
+========================= */
+
+@media(max-width: 900px){
+
+    .container{
+        flex-direction: column;
+    }
+
+    .card{
+        width: 100%;
+
+        position: static;
+    }
+
+    .metricas{
+        flex-direction: column;
+    }
+
+    .info-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .calendario td{
+        height: 120px;
+    }
+
+    .topo-calendario h1{
+        font-size: 28px;
+    }
+
+}
+
+@media(max-width: 700px){
+
+    .calendario th{
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .calendario td{
+        height: 100px;
+
+        padding: 6px;
+    }
+
+    .treino-link{
+        font-size: 11px;
+
+        padding: 6px;
+    }
+
+    .modal-content{
+        padding: 25px;
+    }
+
+    .modal-content h2{
+        font-size: 26px;
+    }
+
+}
+
+/* =========================
+MODAL NOVO
+========================= */
+
+.treino-modal{
+    width: 850px;
+    max-width: 95%;
+
+    background: #1a2740;
+
+    border-radius: 24px;
+
+    padding: 40px;
+
+    color: white;
+
+    box-sizing: border-box;
+}
+
+.treino-modal h2{
+    font-size: 52px;
+
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.metricas-modal{
+    display: flex;
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+.metrica-modal{
+    flex: 1;
+
+    background: #243552;
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    text-align: center;
+}
+
+.metrica-modal h3{
+    margin: 0 0 10px;
+
+    font-size: 42px;
+
+    color: #00bfff;
+}
+
+.metrica-modal span{
+    color: #9bb4d4;
+
+    font-size: 18px;
+}
+
+.info-grid-modal{
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+.info-box-modal{
+    background: #243552;
+
+    padding: 25px;
+
+    border-radius: 18px;
+}
+
+.info-box-modal strong{
+    display: block;
+
+    color: #00bfff;
+
+    margin-bottom: 15px;
+
+    font-size: 18px;
+}
+
+.info-box-modal p{
+    margin: 0;
+
+    font-size: 26px;
+
+    font-weight: bold;
+}
+
+.observacoes-modal{
+    background: #243552;
+
+    padding: 25px;
+
+    border-radius: 18px;
+}
+
+.observacoes-modal strong{
+    display: block;
+
+    color: #00bfff;
+
+    margin-bottom: 15px;
+
+    font-size: 18px;
+}
+
+.observacoes-modal p{
+    margin: 0;
+
+    font-size: 20px;
+}
+
+@media(max-width: 768px){
+
+    .metricas-modal{
+        flex-direction: column;
+    }
+
+    .info-grid-modal{
+        grid-template-columns: 1fr;
+    }
+
+    .treino-modal h2{
+        font-si

@@ -1,56 +1,216 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Calendário de Treinos</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
 </head>
+
 <body>
 
     <main class="container-calendario">
 
-        <h1>Calendário de Treinos</h1>
+        <div class="topo-calendario">
+
+            <a
+                class="btn-mes"
+                href="{{ url_for('calendario', ano=ano_anterior, mes=mes_anterior) }}"
+            >
+                <i class="fa-solid fa-chevron-left"></i>
+            </a>
+
+            <h1>{{ nome_mes }} {{ ano }}</h1>
+
+            <a
+                class="btn-mes"
+                href="{{ url_for('calendario', ano=proximo_ano, mes=proximo_mes) }}"
+            >
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+
+        </div>
 
         <table class="calendario">
+
             <thead>
                 <tr>
+                    <th>Dom</th>
                     <th>Seg</th>
                     <th>Ter</th>
                     <th>Qua</th>
                     <th>Qui</th>
                     <th>Sex</th>
                     <th>Sáb</th>
-                    <th>Dom</th>
                 </tr>
             </thead>
 
             <tbody>
+
                 {% for semana in calendario_mes %}
+
                     <tr>
+
                         {% for dia in semana %}
+
                             <td>
+
                                 {% if dia != 0 %}
+
                                     <strong>{{ dia }}</strong>
 
                                     {% if dia in treinos_por_dia %}
-                                        {% for treino in treinos_por_dia[dia] %}
-                                            <a class="treino-link" href="/treino/{{ treino.id }}">
-                                                🏊 {{ treino.titulo }}
-                                            </a>
-                                        {% endfor %}
-                                    {% endif %}
-                                {% endif %}
-                            </td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
 
-        <a href="/">Voltar</a>
+                                        {% for treino in treinos_por_dia[dia] %}
+
+                                            <button
+                                                type="button"
+                                                class="treino-link"
+
+                                                data-titulo="{{ treino.titulo }}"
+                                                data-data="{{ treino.data_treino }}"
+                                                data-estilo="{{ treino.estilo }}"
+                                                data-distancia="{{ treino.distancia_metros }}m"
+                                                data-duracao="{{ treino.duracao_minutos }} min"
+                                                data-pace="{{ treino.pace }}"
+                                                data-piscina="{{ treino.tamanho_piscina }}m"
+                                                data-voltas="{{ treino.voltas }}"
+                                                data-equipamentos="{{ treino.equipamentos }}"
+                                                data-observacoes="{{ treino.observacoes }}"
+                                            >
+                                                🏊 {{ treino.titulo }}
+                                            </button>
+
+                                        {% endfor %}
+
+                                    {% endif %}
+
+                                {% endif %}
+
+                            </td>
+
+                        {% endfor %}
+
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
 
     </main>
 
+    <div id="modalTreino" class="modal">
+
+        <div class="modal-content treino-modal">
+
+            <span class="close-modal">&times;</span>
+
+            <h2 id="modalTitulo"></h2>
+
+            <div class="metricas-modal">
+
+                <div class="metrica-modal">
+                    <h3 id="modalDistancia"></h3>
+                    <span>Distância</span>
+                </div>
+
+                <div class="metrica-modal">
+                    <h3 id="modalDuracao"></h3>
+                    <span>Duração</span>
+                </div>
+
+                <div class="metrica-modal">
+                    <h3 id="modalPace"></h3>
+                    <span>Ritmo</span>
+                </div>
+
+            </div>
+
+            <div class="info-grid-modal">
+
+                <div class="info-box-modal">
+                    <strong>📅 Data</strong>
+                    <p id="modalData"></p>
+                </div>
+
+                <div class="info-box-modal">
+                    <strong>🏊 Estilo</strong>
+                    <p id="modalEstilo"></p>
+                </div>
+
+                <div class="info-box-modal">
+                    <strong>🏟️ Piscina</strong>
+                    <p id="modalPiscina"></p>
+                </div>
+
+                <div class="info-box-modal">
+                    <strong>🔄 Voltas</strong>
+                    <p id="modalVoltas"></p>
+                </div>
+
+                <div class="info-box-modal">
+                    <strong>🎒 Equipamentos</strong>
+                    <p id="modalEquipamentos"></p>
+                </div>
+
+            </div>
+
+            <div class="observacoes-modal">
+                <strong>📝 Observações</strong>
+                <p id="modalObs"></p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const modal = document.getElementById("modalTreino");
+        const botoesTreino = document.querySelectorAll(".treino-link");
+        const fecharModal = document.querySelector(".close-modal");
+
+        botoesTreino.forEach(botao => {
+
+            botao.addEventListener("click", () => {
+
+                document.getElementById("modalTitulo").innerText = botao.dataset.titulo;
+                document.getElementById("modalData").innerText = botao.dataset.data;
+                document.getElementById("modalEstilo").innerText = botao.dataset.estilo;
+                document.getElementById("modalDistancia").innerText = botao.dataset.distancia;
+                document.getElementById("modalDuracao").innerText = botao.dataset.duracao;
+                document.getElementById("modalPace").innerText = botao.dataset.pace + "/100m";
+                document.getElementById("modalPiscina").innerText = botao.dataset.piscina;
+                document.getElementById("modalVoltas").innerText = botao.dataset.voltas || "Não informado";
+                document.getElementById("modalEquipamentos").innerText = botao.dataset.equipamentos || "Nenhum";
+                document.getElementById("modalObs").innerText = botao.dataset.observacoes || "Sem observações";
+
+                modal.style.display = "flex";
+
+            });
+
+        });
+
+        fecharModal.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        window.addEventListener("click", (event) => {
+            if(event.target === modal){
+                modal.style.display = "none";
+            }
+        });
+
+    </script>
+
 </body>
+
 </html>
