@@ -69,3 +69,39 @@ def listar_treinos():
     conexao.close()
 
     return treinos
+
+def buscar_treino_por_id(id):
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+
+    sql = """
+        SELECT * FROM treinos
+        WHERE id = %s
+    """
+
+    cursor.execute(sql, (id,))
+
+    treino = cursor.fetchone()
+
+    cursor.close()
+    conexao.close()
+
+    return treino
+
+def buscar_treino_por_id(id):
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+
+    sql = """
+        SELECT * FROM treinos
+        WHERE id = %s
+    """
+
+    cursor.execute(sql, (id,))
+
+    treino = cursor.fetchone()
+
+    cursor.close()
+    conexao.close()
+
+    return treino

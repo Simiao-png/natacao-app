@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhe do Treino</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <main class="detalhe-container">
+
+        <div class="detalhe-card">
+
+            <h1>{{ treino.titulo }}</h1>
+
+                <p class="data">
+                 {{ treino.data_treino.strftime('%d/%m/%Y') }}
+                </p>
+
+            <div class="metricas">
+
+                <div class="metrica">
+                    <h2>{{ treino.distancia_metros }}m</h2>
+                    <span>Distância</span>
+                </div>
+
+                <div class="metrica">
+                    <h2>{{ treino.duracao_minutos }} min</h2>
+                    <span>Duração</span>
+                </div>
+
+                <div class="metrica">
+                    <h2>{{ treino.pace }}</h2>
+                    <span>Ritmo (100m)</span>
+                </div>
+
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+                    <strong>Tipo</strong>
+                    <p>{{ treino.estilo }}</p>
+                </div>
+
+                <div class="info-box">
+                    <strong>Piscina</strong>
+                    <p>{{ treino.tamanho_piscina }}m</p>
+                </div>
+
+                <div class="info-box">
+                    <strong>Voltas</strong>
+                    <p>{{ treino.voltas }}</p>
+                </div>
+
+                <div class="info-box">
+                    <strong>Equipamentos</strong>
+                    <p>{{ treino.equipamentos }}</p>
+                </div>
+
+            </div>
+
+            <div class="observacoes-box">
+
+                <strong>Observações</strong>
+
+                <p>
+                    {{ treino.observacoes }}
+                </p>
+
+            </div>
+
+            <a href="/" class="btn-voltar">
+                ← Voltar
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

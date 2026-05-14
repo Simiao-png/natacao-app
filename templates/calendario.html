@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendário de Treinos</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <main class="container-calendario">
+
+        <h1>Calendário de Treinos</h1>
+
+        <table class="calendario">
+            <thead>
+                <tr>
+                    <th>Seg</th>
+                    <th>Ter</th>
+                    <th>Qua</th>
+                    <th>Qui</th>
+                    <th>Sex</th>
+                    <th>Sáb</th>
+                    <th>Dom</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for semana in calendario_mes %}
+                    <tr>
+                        {% for dia in semana %}
+                            <td>
+                                {% if dia != 0 %}
+                                    <strong>{{ dia }}</strong>
+
+                                    {% if dia in treinos_por_dia %}
+                                        {% for treino in treinos_por_dia[dia] %}
+                                            <a class="treino-link" href="/treino/{{ treino.id }}">
+                                                🏊 {{ treino.titulo }}
+                                            </a>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="/">Voltar</a>
+
+    </main>
+
+</body>
+</html>

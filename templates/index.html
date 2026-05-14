@@ -160,7 +160,11 @@
                     <tr>
 
                         <td>{{ treino.data_treino }}</td>
-                        <td>{{ treino.titulo }}</td>
+                        <td>
+                            <a href="/treino/{{ treino.id }}">
+                                {{ treino.titulo }}
+                            </a>
+                        </td>
                         <td>{{ treino.estilo }}</td>
                         <td>{{ treino.tamanho_piscina }}m</td>
                         <td>{{ treino.voltas }}</td>
