@@ -11,7 +11,8 @@ def cadastrar_treino(
     duracao_minutos,
     pace,
     observacoes,
-    equipamentos
+    equipamentos,
+    status="realizado"
 ):
     conexao = conectar()
     cursor = conexao.cursor()
@@ -28,9 +29,10 @@ def cadastrar_treino(
             duracao_minutos,
             pace,
             observacoes,
-            equipamentos
+            equipamentos,
+            status
         )
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
 
     valores = (
@@ -43,7 +45,8 @@ def cadastrar_treino(
         duracao_minutos,
         pace,
         observacoes,
-        equipamentos
+        equipamentos,
+        status
     )
 
     cursor.execute(sql, valores)
@@ -100,7 +103,8 @@ def atualizar_treino(
     duracao_minutos,
     pace,
     observacoes,
-    equipamentos
+    equipamentos,
+    status="realizado"
 ):
     conexao = conectar()
     cursor = conexao.cursor()
@@ -117,7 +121,8 @@ def atualizar_treino(
             duracao_minutos = %s,
             pace = %s,
             observacoes = %s,
-            equipamentos = %s
+            equipamentos = %s,
+            status = %s
         WHERE id = %s
     """
 
@@ -132,6 +137,7 @@ def atualizar_treino(
         pace,
         observacoes,
         equipamentos,
+        status,
         id
     )
 
@@ -152,6 +158,45 @@ def excluir_treino_por_id(id):
     """
 
     cursor.execute(sql, (id,))
+    conexao.commit()
+
+    cursor.close()
+    conexao.close()
+
+
+def buscar_resumo():
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+
+    sql = """
+        SELECT
+            COUNT(*) AS total_treinos,
+            COALESCE(SUM(distancia_metros), 0) AS distancia_total,
+            COALESCE(SUM(duracao_minutos), 0) AS tempo_total
+        FROM treinos
+        WHERE status = 'realizado'
+    """
+
+    cursor.execute(sql)
+    resumo = cursor.fetchone()
+
+    cursor.close()
+    conexao.close()
+
+    return resumo
+
+
+def atualizar_status_treino(id, status):
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    sql = """
+        UPDATE treinos
+        SET status = %s
+        WHERE id = %s
+    """
+
+    cursor.execute(sql, (status, id))
     conexao.commit()
 
     cursor.close()

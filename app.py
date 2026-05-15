@@ -4,8 +4,10 @@ from modelos.treinos import (
     listar_treinos,
     buscar_treino_por_id,
     atualizar_treino,
-    excluir_treino_por_id
+    excluir_treino_por_id,
+    buscar_resumo
 )
+
 import calendar
 from datetime import date, datetime
 
@@ -26,7 +28,13 @@ def calcular_pace(duracao_minutos, distancia_metros):
 @app.route('/')
 def home():
     treinos = listar_treinos()
-    return render_template('index.html', treinos=treinos)
+    resumo = buscar_resumo()
+
+    return render_template(
+        'index.html',
+        treinos=treinos,
+        resumo=resumo
+    )
 
 
 @app.route('/calendario')
