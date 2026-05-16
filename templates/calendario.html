@@ -19,8 +19,6 @@
 
         <div class="calendario-layout">
 
-            <!-- CALENDÁRIO -->
-
             <section class="calendario-area">
 
                 <a href="/" class="btn-voltar-home">
@@ -117,8 +115,6 @@
 
             </section>
 
-            <!-- LATERAL -->
-
             <aside class="sidebar-modelos">
 
                 <h2>Treinos Programados</h2>
@@ -129,9 +125,9 @@
 
                         <div
                             class="modelo-card modelo-arrastavel"
-
                             draggable="true"
 
+                            data-id="{{ modelo.id }}"
                             data-titulo="{{ modelo.titulo }}"
                             data-estilo="{{ modelo.estilo }}"
                             data-distancia="{{ modelo.distancia_metros }}"
@@ -271,53 +267,59 @@
             }
         });
 
-        const modelosArrastaveis = document.querySelectorAll('.modelo-arrastavel');
-        const diasCalendario = document.querySelectorAll('.dia-calendario');
+        const modelosArrastaveis = document.querySelectorAll(".modelo-arrastavel");
+        const diasCalendario = document.querySelectorAll(".dia-calendario");
 
         let treinoSelecionado = null;
 
-            modelosArrastaveis.forEach(modelo => {
+        modelosArrastaveis.forEach(modelo => {
 
-            modelo.addEventListener('dragstart', () => {
+            modelo.addEventListener("dragstart", () => {
 
                 treinoSelecionado = {
-                titulo: modelo.dataset.titulo,
-                estilo: modelo.dataset.estilo,
-                distancia: modelo.dataset.distancia,
-                duracao: modelo.dataset.duracao
-                    };
-
-                });
+                    id: modelo.dataset.id,
+                    titulo: modelo.dataset.titulo
+                };
 
             });
 
-            diasCalendario.forEach(dia => {
+        });
 
-            dia.addEventListener('dragover', (e) => {
-            e.preventDefault();
+        diasCalendario.forEach(dia => {
+
+            dia.addEventListener("dragover", (event) => {
+                event.preventDefault();
             });
 
-            dia.addEventListener('drop', () => {
+            dia.addEventListener("drop", () => {
 
                 if(!treinoSelecionado) return;
 
-        const novoTreino = document.createElement('div');
+                const diaSelecionado = dia.dataset.dia;
+                const mesSelecionado = "{{ mes }}";
+                const anoSelecionado = "{{ ano }}";
 
-        novoTreino.classList.add('treino-link');
+                if(diaSelecionado === "0") return;
 
-        novoTreino.innerHTML = `
-            🏊 ${treinoSelecionado.titulo}
-        `;
+                const dataTreino = `${anoSelecionado}-${String(mesSelecionado).padStart(2, "0")}-${String(diaSelecionado).padStart(2, "0")}`;
 
-        dia.appendChild(novoTreino);
+                const formulario = document.createElement("form");
 
-    });
+                formulario.method = "POST";
+                formulario.action = "/agendar-treino";
 
-});
+                formulario.innerHTML = `
+                    <input type="hidden" name="modelo_id" value="${treinoSelecionado.id}">
+                    <input type="hidden" name="data_treino" value="${dataTreino}">
+                `;
 
+                document.body.appendChild(formulario);
 
+                formulario.submit();
 
+            });
 
+        });
 
     </script>
 

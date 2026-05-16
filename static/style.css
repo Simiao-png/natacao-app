@@ -1354,3 +1354,124 @@ FLIP CARD
     }
 
 }
+
+.calendario td{
+    overflow: hidden;
+}
+
+.treino-link{
+    width: 100%;
+    max-width: 100%;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    box-sizing: border-box;
+}
+
+.dia-calendario .treino-link{
+    display: block;
+}
+
+body:has(.detalhe-container){
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+.detalhe-container{
+    align-items: flex-start;
+    padding: 30px;
+}
+
+.detalhe-card{
+    max-width: 760px;
+    padding: 32px;
+    margin-bottom: 50px;
+}
+
+.detalhe-card h1{
+    font-size: 44px;
+}
+
+.metricas{
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+.metrica{
+    padding: 22px;
+}
+
+.metrica h2{
+    font-size: 38px;
+}
+
+.info-grid{
+    gap: 15px;
+}
+
+.info-box{
+    padding: 22px;
+    min-height: 95px;
+}
+
+.info-box p{
+    font-size: 20px;
+}
+
+.observacoes-box{
+    padding: 22px;
+}
+
+.acoes-treino{
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.acoes-treino form{
+    margin: 0;
+}
+
+.btn-editar,
+.btn-excluir{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 22px;
+
+    border: none;
+    border-radius: 12px;
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn-editar{
+    background: #3164e0;
+}
+
+.btn-editar:hover{
+    background: #4a7dff;
+    transform: translateY(-2px);
+}
+
+.btn-excluir{
+    background: #dc2626;
+}
+
+.btn-excluir:hover{
+    background: #ef4444;
+    transform: translateY(-2px);
+}

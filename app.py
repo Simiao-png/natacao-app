@@ -7,7 +7,8 @@ from modelos.treinos import (
     excluir_treino_por_id,
     buscar_resumo,
     cadastrar_treino_modelo,
-    listar_treinos_modelo
+    listar_treinos_modelo,
+    buscar_treino_modelo_por_id
 )
 
 import calendar
@@ -125,7 +126,7 @@ def calendario():
         ano_anterior=ano_anterior,
         proximo_mes=proximo_mes,
         proximo_ano=proximo_ano
-)
+    )
 
 
 @app.route('/treino/<int:id>')
@@ -213,6 +214,34 @@ def salvar_modelo():
     )
 
     return redirect('/')
+
+
+@app.route('/agendar-treino', methods=['POST'])
+def agendar_treino():
+
+    modelo_id = int(request.form['modelo_id'])
+    data_treino = request.form['data_treino']
+
+    treino_modelo = buscar_treino_modelo_por_id(modelo_id)
+
+    if treino_modelo is None:
+        return redirect('/calendario')
+
+    cadastrar_treino(
+        data_treino,
+        treino_modelo['titulo'],
+        treino_modelo['estilo'],
+        treino_modelo['tamanho_piscina'],
+        treino_modelo['voltas'],
+        treino_modelo['distancia_metros'],
+        treino_modelo['duracao_minutos'],
+        treino_modelo['pace'],
+        treino_modelo['observacoes'],
+        treino_modelo['equipamentos'],
+        status="programado"
+    )
+
+    return redirect('/calendario')
 
 
 @app.route('/treino/<int:id>/editar')

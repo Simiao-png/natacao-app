@@ -268,3 +268,22 @@ def listar_treinos_modelo():
     conexao.close()
 
     return treinos_modelo
+
+def buscar_treino_modelo_por_id(id):
+
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+
+    sql = """
+        SELECT *
+        FROM treinos_modelo
+        WHERE id = %s
+    """
+
+    cursor.execute(sql, (id,))
+    treino = cursor.fetchone()
+
+    cursor.close()
+    conexao.close()
+
+    return treino
