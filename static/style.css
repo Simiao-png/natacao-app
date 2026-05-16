@@ -1519,3 +1519,578 @@ body{
 .editar-page{
     padding: 40px 0;
 }
+
+/* =========================
+RESPONSIVO MOBILE - TELA INICIAL
+========================= */
+
+@media(max-width: 768px){
+
+    body{
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .container{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+        gap: 18px;
+        overflow: visible;
+    }
+
+    .flip-container{
+        height: auto;
+        min-height: 700px;
+    }
+
+    .flip-card{
+        min-height: 700px;
+    }
+
+    .cadastro-card{
+        height: auto;
+        min-height: auto;
+        padding: 22px;
+        border-radius: 20px;
+    }
+
+    .cadastro-form{
+        gap: 16px;
+    }
+
+    .form-group{
+        gap: 7px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea,
+    .cadastro-form input,
+    .cadastro-form select,
+    .cadastro-form textarea{
+        padding: 11px;
+        font-size: 14px;
+    }
+
+    .equipamento-item{
+        padding: 11px;
+        font-size: 14px;
+    }
+
+    .btn-salvar{
+        padding: 13px;
+        font-size: 15px;
+    }
+
+    .area-principal{
+        height: auto;
+        overflow: visible;
+    }
+
+    .dashboard-cards{
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .dashboard-card{
+        min-height: 75px;
+        padding: 16px 18px;
+        border-radius: 18px;
+    }
+
+    .dashboard-card p{
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+
+    .dashboard-card h3{
+        font-size: 26px;
+    }
+
+    .historico{
+        overflow: visible;
+    }
+
+    .historico-topo{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        margin-top: 10px;
+    }
+
+    .historico-topo h2{
+        font-size: 26px;
+    }
+
+    .btn-calendario{
+        width: 100%;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+}
+
+/* =========================
+HISTÓRICO MOBILE EM CARDS
+========================= */
+
+@media(max-width: 768px){
+
+    .historico .tabela-wrapper{
+        overflow: visible;
+    }
+
+    .historico table,
+    .historico thead,
+    .historico tbody,
+    .historico th,
+    .historico td,
+    .historico tr{
+        display: block;
+        width: 100%;
+    }
+
+    .historico thead{
+        display: none;
+    }
+
+    .historico tr{
+        background: #1a2740;
+        border-radius: 18px;
+        padding: 16px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+    }
+
+    .historico td{
+        border: none;
+        padding: 8px 0;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 13px;
+    }
+
+    .historico td::before{
+        font-weight: bold;
+        color: #00bfff;
+    }
+
+    .historico td:nth-child(1)::before{ content: "Data"; }
+    .historico td:nth-child(2)::before{ content: "Título"; }
+    .historico td:nth-child(3)::before{ content: "Tipo"; }
+    .historico td:nth-child(4)::before{ content: "Piscina"; }
+    .historico td:nth-child(5)::before{ content: "Voltas"; }
+    .historico td:nth-child(6)::before{ content: "Distância"; }
+    .historico td:nth-child(7)::before{ content: "Duração"; }
+    .historico td:nth-child(8)::before{ content: "Ritmo"; }
+    .historico td:nth-child(9)::before{ content: "Equip."; }
+    .historico td:nth-child(10)::before{ content: "Ações"; }
+
+    .historico .acoes-hover{
+        opacity: 1;
+        visibility: visible;
+    }
+
+}
+
+/* =========================
+CALENDÁRIO MOBILE
+========================= */
+
+@media(max-width: 768px){
+
+    .container-calendario{
+        width: 100%;
+        padding: 20px 14px 60px;
+        box-sizing: border-box;
+    }
+
+    .calendario-layout{
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .topo-calendario{
+        gap: 14px;
+        margin-bottom: 18px;
+    }
+
+    .topo-calendario h1{
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .btn-mes{
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+
+    .calendario-area{
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .calendario{
+        width: 820px;
+        min-width: 820px;
+        table-layout: fixed;
+    }
+
+    .calendario th,
+    .calendario td{
+        width: 117px;
+        min-width: 117px;
+        max-width: 117px;
+    }
+
+    .calendario th{
+        padding: 12px;
+        font-size: 12px;
+    }
+
+    .calendario td{
+        height: 105px;
+        padding: 7px;
+    }
+
+    .calendario strong{
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .treino-link{
+        font-size: 11px;
+        padding: 7px;
+        border-radius: 8px;
+    }
+
+    .sidebar-modelos{
+        width: 100%;
+        max-height: none;
+        padding: 18px;
+        border-radius: 20px;
+    }
+
+    .sidebar-modelos h2{
+        font-size: 22px;
+    }
+
+    .modelo-card{
+        padding: 14px;
+        border-radius: 14px;
+    }
+
+}
+
+/* =========================
+DETALHE MOBILE
+========================= */
+
+@media(max-width: 768px){
+
+    .detalhe-container{
+        padding: 20px 14px;
+    }
+
+    .detalhe-card{
+        width: 100%;
+        max-width: 100%;
+        padding: 24px;
+        border-radius: 22px;
+    }
+
+    .detalhe-card h1{
+        font-size: 30px;
+    }
+
+    .metricas{
+        flex-direction: row;
+        gap: 8px;
+    }
+
+    .metrica{
+        padding: 14px 8px;
+    }
+
+    .metrica h2{
+        font-size: 22px;
+    }
+
+    .metrica span{
+        font-size: 11px;
+    }
+
+    .info-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .acoes-treino{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .btn-voltar,
+    .btn-editar,
+    .btn-excluir{
+        width: 100%;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+}
+
+@media(max-width: 768px){
+
+    .calendario{
+        width: 100%;
+        min-width: 100%;
+        table-layout: fixed;
+    }
+
+    .calendario th,
+    .calendario td{
+        width: 14.28%;
+        min-width: 0;
+        max-width: none;
+    }
+
+    .calendario td{
+        height: 78px;
+        padding: 4px;
+    }
+
+    .calendario strong{
+        font-size: 10px;
+        margin-bottom: 5px;
+    }
+
+    .treino-link{
+        font-size: 8px;
+        padding: 4px;
+        border-radius: 6px;
+    }
+
+}
+
+@media(max-width: 768px){
+
+    .calendario td{
+        height: 78px;
+        max-height: 78px;
+        overflow: hidden;
+    }
+
+    .calendario .treino-link{
+        height: 18px;
+        line-height: 10px;
+        padding: 4px;
+        margin-bottom: 3px;
+
+        font-size: 8px;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+}
+
+/* =========================
+AJUSTE MOBILE - DETALHE DO TREINO
+========================= */
+
+@media(max-width: 768px){
+
+    .detalhe-container{
+        padding: 18px 12px;
+        align-items: flex-start;
+    }
+
+    .detalhe-card{
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+        border-radius: 22px;
+    }
+
+    .detalhe-card h1{
+        font-size: 26px;
+        line-height: 1.15;
+    }
+
+    .data{
+        font-size: 13px;
+        margin-bottom: 22px;
+    }
+
+    .metricas{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .metrica{
+        padding: 16px;
+    }
+
+    .metrica h2{
+        font-size: 28px;
+    }
+
+    .metrica span{
+        font-size: 13px;
+    }
+
+    .info-grid{
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .info-box{
+        padding: 16px;
+        min-height: auto;
+    }
+
+    .info-box strong{
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .info-box p{
+        font-size: 16px;
+    }
+
+    .observacoes-box{
+        padding: 16px;
+    }
+
+    .observacoes-box strong{
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .observacoes-box p{
+        font-size: 15px;
+    }
+
+    .acoes-treino{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-voltar,
+    .btn-editar,
+    .btn-excluir{
+        width: 100%;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+}
+
+/* =========================
+FORÇAR MOBILE - DETALHE DO TREINO
+========================= */
+
+@media(max-width: 768px){
+
+    .detalhe-container{
+        padding: 16px 10px !important;
+        align-items: flex-start !important;
+    }
+
+    .detalhe-card{
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 18px !important;
+        border-radius: 20px !important;
+    }
+
+    .detalhe-card h1{
+        font-size: 24px !important;
+        line-height: 1.15 !important;
+    }
+
+    .data{
+        font-size: 12px !important;
+        margin-bottom: 18px !important;
+    }
+
+    .metricas{
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    .metrica{
+        width: 100% !important;
+        padding: 14px !important;
+        box-sizing: border-box !important;
+    }
+
+    .metrica h2{
+        font-size: 26px !important;
+    }
+
+    .metrica span{
+        font-size: 12px !important;
+    }
+
+    .info-grid{
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+
+    .info-box{
+        padding: 14px !important;
+        min-height: auto !important;
+    }
+
+    .info-box strong{
+        font-size: 13px !important;
+        margin-bottom: 7px !important;
+    }
+
+    .info-box p{
+        font-size: 15px !important;
+    }
+
+    .observacoes-box{
+        padding: 14px !important;
+    }
+
+    .observacoes-box strong{
+        font-size: 13px !important;
+    }
+
+    .observacoes-box p{
+        font-size: 14px !important;
+    }
+
+    .acoes-treino{
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    .btn-voltar,
+    .btn-editar,
+    .btn-excluir{
+        width: 100% !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+    }
+
+}
