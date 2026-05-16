@@ -8,7 +8,8 @@ from modelos.treinos import (
     buscar_resumo,
     cadastrar_treino_modelo,
     listar_treinos_modelo,
-    buscar_treino_modelo_por_id
+    buscar_treino_modelo_por_id,
+    mover_treino_programado
 )
 
 import calendar
@@ -240,6 +241,16 @@ def agendar_treino():
         treino_modelo['equipamentos'],
         status="programado"
     )
+
+    return redirect('/calendario')
+
+@app.route('/mover-treino', methods=['POST'])
+def mover_treino():
+
+    treino_id = int(request.form['treino_id'])
+    nova_data = request.form['nova_data']
+
+    mover_treino_programado(treino_id, nova_data)
 
     return redirect('/calendario')
 

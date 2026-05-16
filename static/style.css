@@ -1475,3 +1475,47 @@ body:has(.detalhe-container){
     background: #ef4444;
     transform: translateY(-2px);
 }
+
+body{
+    background:
+        linear-gradient(
+            rgba(1, 10, 30, 0.72),
+            rgba(1, 10, 30, 0.82)
+        ),
+        url("img/piscina-bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.editar-body{
+    background:
+        linear-gradient(
+            rgba(1, 10, 30, 0.78),
+            rgba(1, 10, 30, 0.85)
+        ),
+        url("img/piscina-editar.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.editar-page{
+    background: transparent;
+}
+
+.editar-container{
+    background: rgba(27, 41, 69, 0.92);
+    backdrop-filter: blur(6px);
+}
+
+.editar-body{
+    overflow-y: auto;
+    min-height: 100vh;
+}
+
+.editar-page{
+    padding: 40px 0;
+}

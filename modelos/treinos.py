@@ -287,3 +287,21 @@ def buscar_treino_modelo_por_id(id):
     conexao.close()
 
     return treino
+
+def mover_treino_programado(id, nova_data):
+
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    sql = """
+        UPDATE treinos
+        SET data_treino = %s
+        WHERE id = %s
+        AND status = 'programado'
+    """
+
+    cursor.execute(sql, (nova_data, id))
+    conexao.commit()
+
+    cursor.close()
+    conexao.close()

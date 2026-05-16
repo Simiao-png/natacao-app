@@ -79,8 +79,14 @@
 
                                                     <button
                                                         type="button"
-                                                        class="treino-link"
+                                                        class="treino-link {% if treino.status == 'programado' %}treino-programado-arrastavel{% endif %}"
 
+                                                        {% if treino.status == 'programado' %}
+                                                            draggable="true"
+                                                        {% endif %}
+
+                                                        data-id="{{ treino.id }}"
+                                                        data-status="{{ treino.status }}"
                                                         data-titulo="{{ treino.titulo }}"
                                                         data-data="{{ treino.data_treino }}"
                                                         data-estilo="{{ treino.estilo }}"
@@ -141,17 +147,9 @@
 
                             <h3>{{ modelo.titulo }}</h3>
 
-                            <p>
-                                🏊 {{ modelo.estilo }}
-                            </p>
-
-                            <p>
-                                📏 {{ modelo.distancia_metros }}m
-                            </p>
-
-                            <p>
-                                ⏱ {{ modelo.duracao_minutos }} min
-                            </p>
+                            <p>🏊 {{ modelo.estilo }}</p>
+                            <p>📏 {{ modelo.distancia_metros }}m</p>
+                            <p>⏱ {{ modelo.duracao_minutos }} min</p>
 
                         </div>
 
@@ -245,7 +243,7 @@
                 document.getElementById("modalEstilo").innerText = botao.dataset.estilo;
                 document.getElementById("modalDistancia").innerText = botao.dataset.distancia;
                 document.getElementById("modalDuracao").innerText = botao.dataset.duracao;
-                document.getElementById("modalPace").innerText = botao.dataset.pace + "/100m";
+                document.getElementById("modalPace").innerText = botao.dataset.pace;
                 document.getElementById("modalPiscina").innerText = botao.dataset.piscina;
                 document.getElementById("modalVoltas").innerText = botao.dataset.voltas || "Não informado";
                 document.getElementById("modalEquipamentos").innerText = botao.dataset.equipamentos || "Nenhum";
@@ -268,6 +266,7 @@
         });
 
         const modelosArrastaveis = document.querySelectorAll(".modelo-arrastavel");
+        const treinosProgramados = document.querySelectorAll(".treino-programado-arrastavel");
         const diasCalendario = document.querySelectorAll(".dia-calendario");
 
         let treinoSelecionado = null;
@@ -277,8 +276,23 @@
             modelo.addEventListener("dragstart", () => {
 
                 treinoSelecionado = {
+                    tipo: "modelo",
                     id: modelo.dataset.id,
                     titulo: modelo.dataset.titulo
+                };
+
+            });
+
+        });
+
+        treinosProgramados.forEach(treino => {
+
+            treino.addEventListener("dragstart", () => {
+
+                treinoSelecionado = {
+                    tipo: "treino-programado",
+                    id: treino.dataset.id,
+                    titulo: treino.dataset.titulo
                 };
 
             });
@@ -306,15 +320,28 @@
                 const formulario = document.createElement("form");
 
                 formulario.method = "POST";
-                formulario.action = "/agendar-treino";
 
-                formulario.innerHTML = `
-                    <input type="hidden" name="modelo_id" value="${treinoSelecionado.id}">
-                    <input type="hidden" name="data_treino" value="${dataTreino}">
-                `;
+                if(treinoSelecionado.tipo === "modelo"){
+
+                    formulario.action = "/agendar-treino";
+
+                    formulario.innerHTML = `
+                        <input type="hidden" name="modelo_id" value="${treinoSelecionado.id}">
+                        <input type="hidden" name="data_treino" value="${dataTreino}">
+                    `;
+
+                } else {
+
+                    formulario.action = "/mover-treino";
+
+                    formulario.innerHTML = `
+                        <input type="hidden" name="treino_id" value="${treinoSelecionado.id}">
+                        <input type="hidden" name="nova_data" value="${dataTreino}">
+                    `;
+
+                }
 
                 document.body.appendChild(formulario);
-
                 formulario.submit();
 
             });
