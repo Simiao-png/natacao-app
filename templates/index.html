@@ -17,111 +17,240 @@
 
     <main class="container">
 
-        <section class="cadastro-card">
+        <div class="flip-container">
 
-            <div class="cadastro-header">
-                <h1>Cadastro de Treino</h1>
-                <p>Adicione seus treinos de natação</p>
+            <div class="flip-card">
+
+                <!-- FRENTE -->
+
+                <section class="cadastro-card front-card">
+
+                    <div class="cadastro-topo">
+
+                        <div>
+                            <h1>Cadastro de Treino</h1>
+                            <p>Adicione seus treinos de natação</p>
+                        </div>
+
+                        <button class="btn-flip" type="button">
+                            <i class="fa-solid fa-repeat"></i>
+                        </button>
+
+                    </div>
+
+                    <form action="/salvar" method="POST" class="cadastro-form">
+
+                        <div class="form-group">
+                            <label>Data do treino</label>
+                            <input type="date" name="data_treino" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Título do treino</label>
+                            <input type="text" name="titulo" placeholder="Ex: Treino regenerativo" required>
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label>Tipo de treino</label>
+
+                                <select name="estilo">
+                                    <option value="Crawl">Crawl</option>
+                                    <option value="Costas">Costas</option>
+                                    <option value="Peito">Peito</option>
+                                    <option value="Borboleta">Borboleta</option>
+                                    <option value="Medley">Medley</option>
+                                    <option value="Educativo">Educativo</option>
+                                    <option value="Pernada">Pernada</option>
+                                    <option value="Braçada">Braçada</option>
+                                    <option value="Técnica">Técnica</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Tamanho da piscina</label>
+
+                                <select name="tamanho_piscina">
+                                    <option value="12.5">12.5m</option>
+                                    <option value="25">25m</option>
+                                    <option value="50">50m</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label>Número de voltas</label>
+                                <input type="number" name="voltas" placeholder="Ex: 30" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Duração em minutos</label>
+                                <input type="number" name="duracao_minutos" placeholder="Ex: 45" required>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Equipamentos</label>
+
+                            <div class="equipamentos-grid">
+
+                                <label class="equipamento-item">
+                                    <span>Palmar</span>
+                                    <input type="checkbox" name="equipamentos" value="Palmar">
+                                </label>
+
+                                <label class="equipamento-item">
+                                    <span>Pullbuoy</span>
+                                    <input type="checkbox" name="equipamentos" value="Pullbuoy">
+                                </label>
+
+                                <label class="equipamento-item">
+                                    <span>Prancha</span>
+                                    <input type="checkbox" name="equipamentos" value="Prancha">
+                                </label>
+
+                                <label class="equipamento-item">
+                                    <span>Pé de pato</span>
+                                    <input type="checkbox" name="equipamentos" value="Pé de pato">
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Observações</label>
+                            <textarea name="observacoes" rows="5" placeholder="Descreva o treino..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-salvar">
+                            💾 Salvar treino
+                        </button>
+
+                    </form>
+
+                </section>
+
+                <!-- VERSO -->
+
+                <section class="cadastro-card back-card">
+
+                    <div class="cadastro-topo">
+
+                        <div>
+                            <h1>Programar Treino</h1>
+                            <p>Crie treinos para usar no calendário</p>
+                        </div>
+
+                        <button class="btn-flip" type="button">
+                            <i class="fa-solid fa-repeat"></i>
+                        </button>
+
+                    </div>
+
+                    <form action="/salvar-modelo" method="POST" class="cadastro-form">
+
+                        <div class="form-group">
+                            <label>Título do treino</label>
+                            <input type="text" name="titulo" placeholder="Ex: Longão progressivo" required>
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label>Tipo de treino</label>
+
+                                <select name="estilo">
+                                    <option value="Crawl">Crawl</option>
+                                    <option value="Costas">Costas</option>
+                                    <option value="Peito">Peito</option>
+                                    <option value="Borboleta">Borboleta</option>
+                                    <option value="Medley">Medley</option>
+                                    <option value="Educativo">Educativo</option>
+                                    <option value="Pernada">Pernada</option>
+                                    <option value="Braçada">Braçada</option>
+                                    <option value="Técnica">Técnica</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Tamanho da piscina</label>
+
+                                <select name="tamanho_piscina">
+                                    <option value="12.5">12.5m</option>
+                                    <option value="25">25m</option>
+                                    <option value="50">50m</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label>Número de voltas</label>
+                                <input type="number" name="voltas" placeholder="Ex: 40" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Duração em minutos</label>
+                                <input type="number" name="duracao_minutos" placeholder="Ex: 90" required>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Equipamentos</label>
+
+                            <div class="equipamentos-grid">
+
+                                <label class="equipamento-item">
+                                    <span>Palmar</span>
+                                    <input type="checkbox" name="equipamentos" value="Palmar">
+                                </label>
+
+                                <label class="equipamento-item">
+                                    <span>Pullbuoy</span>
+                                    <input type="checkbox" name="equipamentos" value="Pullbuoy">
+                                </label>
+
+                                <label class="equipamento-item">
+                                    <span>Prancha</span>
+                                    <input type="checkbox" name="equipamentos" value="Prancha">
+                                </label>
+
+                                <label class="equipamento-item">
+                                    <span>Pé de pato</span>
+                                    <input type="checkbox" name="equipamentos" value="Pé de pato">
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Observações</label>
+                            <textarea name="observacoes" rows="5" placeholder="Descreva o treino..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-salvar">
+                            🗓 Programar treino
+                        </button>
+
+                    </form>
+
+                </section>
+
             </div>
 
-            <form action="/salvar" method="POST" class="cadastro-form">
-
-                <div class="form-group">
-                    <label>Data do treino</label>
-                    <input type="date" name="data_treino" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Título do treino</label>
-                    <input type="text" name="titulo" placeholder="Ex: Treino regenerativo" required>
-                </div>
-
-                <div class="form-grid">
-
-                    <div class="form-group">
-                        <label>Tipo de treino</label>
-
-                        <select name="estilo">
-                            <option value="Crawl">Crawl</option>
-                            <option value="Costas">Costas</option>
-                            <option value="Peito">Peito</option>
-                            <option value="Borboleta">Borboleta</option>
-                            <option value="Medley">Medley</option>
-                            <option value="Educativo">Educativo</option>
-                            <option value="Pernada">Pernada</option>
-                            <option value="Braçada">Braçada</option>
-                            <option value="Técnica">Técnica</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Tamanho da piscina</label>
-
-                        <select name="tamanho_piscina">
-                            <option value="12.5">12.5m</option>
-                            <option value="25">25m</option>
-                            <option value="50">50m</option>
-                        </select>
-                    </div>
-
-                </div>
-
-                <div class="form-grid">
-
-                    <div class="form-group">
-                        <label>Número de voltas</label>
-                        <input type="number" name="voltas" placeholder="Ex: 30" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Duração em minutos</label>
-                        <input type="number" name="duracao_minutos" placeholder="Ex: 45" required>
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>Equipamentos</label>
-
-                    <div class="equipamentos-grid">
-
-                        <label class="equipamento-item">
-                            <span>Palmar</span>
-                            <input type="checkbox" name="equipamentos" value="Palmar">
-                        </label>
-
-                        <label class="equipamento-item">
-                            <span>Pullbuoy</span>
-                            <input type="checkbox" name="equipamentos" value="Pullbuoy">
-                        </label>
-
-                        <label class="equipamento-item">
-                            <span>Prancha</span>
-                            <input type="checkbox" name="equipamentos" value="Prancha">
-                        </label>
-
-                        <label class="equipamento-item">
-                            <span>Pé de pato</span>
-                            <input type="checkbox" name="equipamentos" value="Pé de pato">
-                        </label>
-
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-                    <label>Observações</label>
-                    <textarea name="observacoes" rows="5" placeholder="Descreva o treino..."></textarea>
-                </div>
-
-                <button type="submit" class="btn-salvar">
-                    💾 Salvar treino
-                </button>
-
-            </form>
-
-        </section>
+        </div>
 
         <div class="area-principal">
 
@@ -205,20 +334,20 @@
 
                                     <div class="acoes-hover">
 
-                                        <a href="/treino/{{ treino.id }}" class="acao-btn" title="Ver detalhes">
+                                        <a href="/treino/{{ treino.id }}" class="acao-btn">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
 
-                                        <a href="/treino/{{ treino.id }}/editar" class="acao-btn" title="Editar treino">
+                                        <a href="/treino/{{ treino.id }}/editar" class="acao-btn">
                                             <i class="fa-solid fa-pen"></i>
                                         </a>
 
                                         <form
                                             action="/treino/{{ treino.id }}/excluir"
                                             method="POST"
-                                            onsubmit="return confirm('Tem certeza que deseja excluir este treino?');"
+                                            onsubmit="return confirm('Tem certeza?');"
                                         >
-                                            <button type="submit" class="acao-btn excluir" title="Excluir treino">
+                                            <button type="submit" class="acao-btn excluir">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </form>
@@ -242,6 +371,21 @@
         </div>
 
     </main>
+
+    <script>
+
+        const flipButtons = document.querySelectorAll('.btn-flip');
+        const flipCard = document.querySelector('.flip-card');
+
+        flipButtons.forEach(botao => {
+
+            botao.addEventListener('click', () => {
+                flipCard.classList.toggle('virado');
+            });
+
+        });
+
+    </script>
 
 </body>
 

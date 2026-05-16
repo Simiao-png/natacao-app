@@ -1184,3 +1184,173 @@ SCROLLBAR MODERNA
 .tabela-wrapper:hover::-webkit-scrollbar-thumb:hover{
     background: rgba(0, 191, 255, 0.65);
 }
+
+.cadastro-topo{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    margin-bottom: 30px;
+}
+
+.cadastro-topo h1{
+    margin-top: 0;
+    margin-bottom: 10px;
+
+    font-size: 32px;
+}
+
+.cadastro-topo p{
+    margin: 0;
+
+    color: #9bb4d4;
+}
+
+.btn-flip{
+    width: 48px;
+    height: 48px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: #243552;
+
+    color: #00bfff;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn-flip:hover{
+    background: #30466d;
+
+    transform: rotate(180deg);
+}
+
+/* =========================
+CORREÇÃO DA PÁGINA CALENDÁRIO
+========================= */
+
+body:has(.container-calendario){
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.container-calendario{
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+
+/* =========================
+FLIP CARD
+========================= */
+
+.flip-container{
+    width: 100%;
+    height: calc(100vh - 50px);
+    perspective: 1500px;
+}
+
+.flip-card{
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+}
+
+.flip-card.virado{
+    transform: rotateY(180deg);
+}
+
+.front-card,
+.back-card{
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    overflow-y: auto;
+}
+
+.back-card{
+    transform: rotateY(180deg);
+}
+
+
+.calendario-layout{
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 25px;
+    align-items: start;
+}
+
+.calendario-area{
+    min-width: 0;
+}
+
+.calendario{
+    width: 100%;
+}
+
+.calendario td{
+    height: 120px;
+}
+
+.sidebar-modelos{
+    background: #1a2740;
+    border-radius: 24px;
+    padding: 24px;
+    box-sizing: border-box;
+    max-height: 78vh;
+    overflow-y: auto;
+}
+
+.sidebar-modelos h2{
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 24px;
+}
+
+.lista-modelos{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.modelo-card{
+    background: #243552;
+    border-radius: 16px;
+    padding: 16px;
+    border-left: 4px solid #00bfff;
+}
+
+.modelo-card h3{
+    margin: 0 0 12px;
+    font-size: 17px;
+}
+
+.modelo-card p{
+    margin: 8px 0;
+    color: #dbeafe;
+    font-size: 14px;
+}
+
+@media(max-width: 1100px){
+
+    .calendario-layout{
+        grid-template-columns: 1fr;
+    }
+
+}

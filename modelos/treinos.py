@@ -201,3 +201,70 @@ def atualizar_status_treino(id, status):
 
     cursor.close()
     conexao.close()
+
+
+def cadastrar_treino_modelo(
+    titulo,
+    estilo,
+    tamanho_piscina,
+    voltas,
+    distancia_metros,
+    duracao_minutos,
+    pace,
+    observacoes,
+    equipamentos
+):
+    conexao = conectar()
+    cursor = conexao.cursor()
+
+    sql = """
+        INSERT INTO treinos_modelo
+        (
+            titulo,
+            estilo,
+            tamanho_piscina,
+            voltas,
+            distancia_metros,
+            duracao_minutos,
+            pace,
+            observacoes,
+            equipamentos
+        )
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    """
+
+    valores = (
+        titulo,
+        estilo,
+        tamanho_piscina,
+        voltas,
+        distancia_metros,
+        duracao_minutos,
+        pace,
+        observacoes,
+        equipamentos
+    )
+
+    cursor.execute(sql, valores)
+    conexao.commit()
+
+    cursor.close()
+    conexao.close()
+
+
+def listar_treinos_modelo():
+    conexao = conectar()
+    cursor = conexao.cursor(dictionary=True)
+
+    sql = """
+        SELECT * FROM treinos_modelo
+        ORDER BY criado_em DESC
+    """
+
+    cursor.execute(sql)
+    treinos_modelo = cursor.fetchall()
+
+    cursor.close()
+    conexao.close()
+
+    return treinos_modelo

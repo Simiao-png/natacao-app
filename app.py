@@ -5,7 +5,9 @@ from modelos.treinos import (
     buscar_treino_por_id,
     atualizar_treino,
     excluir_treino_por_id,
-    buscar_resumo
+    buscar_resumo,
+    cadastrar_treino_modelo,
+    listar_treinos_modelo
 )
 
 import calendar
@@ -15,10 +17,12 @@ app = Flask(__name__)
 
 
 def calcular_pace(duracao_minutos, distancia_metros):
+
     if distancia_metros == 0:
         return "0:00"
 
     pace_decimal = duracao_minutos / (distancia_metros / 100)
+
     pace_minutos = int(pace_decimal)
     pace_segundos = int((pace_decimal - pace_minutos) * 60)
 
@@ -27,18 +31,24 @@ def calcular_pace(duracao_minutos, distancia_metros):
 
 @app.route('/')
 def home():
+
     treinos = listar_treinos()
+
+    treinos_modelo = listar_treinos_modelo()
+
     resumo = buscar_resumo()
 
     return render_template(
         'index.html',
         treinos=treinos,
+        treinos_modelo=treinos_modelo,
         resumo=resumo
     )
 
 
 @app.route('/calendario')
 def calendario():
+
     hoje = date.today()
 
     ano = int(request.args.get('ano', hoje.year))
@@ -77,15 +87,21 @@ def calendario():
     nome_mes = nomes_meses[mes]
 
     treinos = listar_treinos()
+
     treinos_por_dia = {}
 
     for treino in treinos:
+
         data_treino = treino['data_treino']
 
         if isinstance(data_treino, str):
-            data_treino = datetime.strptime(data_treino, '%Y-%m-%d').date()
+            data_treino = datetime.strptime(
+                data_treino,
+                '%Y-%m-%d'
+            ).date()
 
         if data_treino.year == ano and data_treino.month == mes:
+
             dia = data_treino.day
 
             if dia not in treinos_por_dia:
@@ -95,10 +111,13 @@ def calendario():
 
     calendario_mes = calendar.monthcalendar(ano, mes)
 
+    treinos_modelo = listar_treinos_modelo()
+
     return render_template(
         'calendario.html',
         calendario_mes=calendario_mes,
         treinos_por_dia=treinos_por_dia,
+        treinos_modelo=treinos_modelo,
         nome_mes=nome_mes,
         ano=ano,
         mes=mes,
@@ -106,17 +125,23 @@ def calendario():
         ano_anterior=ano_anterior,
         proximo_mes=proximo_mes,
         proximo_ano=proximo_ano
-    )
+)
 
 
 @app.route('/treino/<int:id>')
 def detalhe_treino(id):
+
     treino = buscar_treino_por_id(id)
-    return render_template('detalhe_treino.html', treino=treino)
+
+    return render_template(
+        'detalhe_treino.html',
+        treino=treino
+    )
 
 
 @app.route('/salvar', methods=['POST'])
 def salvar():
+
     data_treino = request.form['data_treino']
     titulo = request.form['titulo']
     estilo = request.form['estilo']
@@ -125,13 +150,17 @@ def salvar():
     voltas = int(request.form['voltas'])
     duracao_minutos = int(request.form['duracao_minutos'])
 
-    observacoes = request.form['observacoes']
+    observacoes = request.form.get('observacoes', '')
 
     equipamentos = request.form.getlist('equipamentos')
     equipamentos = ', '.join(equipamentos)
 
     distancia_metros = tamanho_piscina * voltas
-    pace = calcular_pace(duracao_minutos, distancia_metros)
+
+    pace = calcular_pace(
+        duracao_minutos,
+        distancia_metros
+    )
 
     cadastrar_treino(
         data_treino,
@@ -149,14 +178,57 @@ def salvar():
     return redirect('/')
 
 
+@app.route('/salvar-modelo', methods=['POST'])
+def salvar_modelo():
+
+    titulo = request.form['titulo']
+    estilo = request.form['estilo']
+
+    tamanho_piscina = float(request.form['tamanho_piscina'])
+    voltas = int(request.form['voltas'])
+    duracao_minutos = int(request.form['duracao_minutos'])
+
+    observacoes = request.form.get('observacoes', '')
+
+    equipamentos = request.form.getlist('equipamentos')
+    equipamentos = ', '.join(equipamentos)
+
+    distancia_metros = tamanho_piscina * voltas
+
+    pace = calcular_pace(
+        duracao_minutos,
+        distancia_metros
+    )
+
+    cadastrar_treino_modelo(
+        titulo,
+        estilo,
+        tamanho_piscina,
+        voltas,
+        distancia_metros,
+        duracao_minutos,
+        pace,
+        observacoes,
+        equipamentos
+    )
+
+    return redirect('/')
+
+
 @app.route('/treino/<int:id>/editar')
 def editar_treino(id):
+
     treino = buscar_treino_por_id(id)
-    return render_template('editar_treino.html', treino=treino)
+
+    return render_template(
+        'editar_treino.html',
+        treino=treino
+    )
 
 
 @app.route('/treino/<int:id>/atualizar', methods=['POST'])
 def atualizar(id):
+
     data_treino = request.form['data_treino']
     titulo = request.form['titulo']
     estilo = request.form['estilo']
@@ -165,13 +237,17 @@ def atualizar(id):
     voltas = int(request.form['voltas'])
     duracao_minutos = int(request.form['duracao_minutos'])
 
-    observacoes = request.form['observacoes']
+    observacoes = request.form.get('observacoes', '')
 
     equipamentos = request.form.getlist('equipamentos')
     equipamentos = ', '.join(equipamentos)
 
     distancia_metros = tamanho_piscina * voltas
-    pace = calcular_pace(duracao_minutos, distancia_metros)
+
+    pace = calcular_pace(
+        duracao_minutos,
+        distancia_metros
+    )
 
     atualizar_treino(
         id,
@@ -192,7 +268,9 @@ def atualizar(id):
 
 @app.route('/treino/<int:id>/excluir', methods=['POST'])
 def excluir_treino(id):
+
     excluir_treino_por_id(id)
+
     return redirect('/')
 
 
