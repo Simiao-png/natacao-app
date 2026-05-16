@@ -9,7 +9,8 @@ from modelos.treinos import (
     cadastrar_treino_modelo,
     listar_treinos_modelo,
     buscar_treino_modelo_por_id,
-    mover_treino_programado
+    mover_treino_programado,
+    concluir_treino
 )
 
 import calendar

@@ -768,6 +768,15 @@ CALENDÁRIO
     background: #4a7dff;
 }
 
+.treino-link.programado{
+    background: #eab308;
+    color: #081229;
+}
+
+.treino-link.programado:hover{
+    background: #facc15;
+}
+
 /* =========================
 MODAL
 ========================= */
@@ -1842,11 +1851,14 @@ DETALHE MOBILE
 
     .btn-voltar,
     .btn-editar,
-    .btn-excluir{
+    .btn-excluir,
+    .btn-concluir{
         width: 100%;
+
         justify-content: center;
+
         box-sizing: border-box;
-    }
+}
 
 }
 
@@ -2093,4 +2105,102 @@ FORÇAR MOBILE - DETALHE DO TREINO
         box-sizing: border-box !important;
     }
 
+}
+
+/* =========================
+CORREÇÃO FINAL MOBILE - DETALHE DO TREINO
+========================= */
+
+@media(max-width: 768px){
+
+    .detalhe-card.treino-modal{
+        width: 96% !important;
+        max-width: 96% !important;
+        padding: 18px !important;
+        border-radius: 20px !important;
+    }
+
+    .detalhe-card.treino-modal h1{
+        font-size: 24px !important;
+        line-height: 1.15 !important;
+        margin-bottom: 8px !important;
+    }
+
+    .detalhe-card.treino-modal .data{
+        font-size: 12px !important;
+        margin-bottom: 18px !important;
+    }
+
+    .detalhe-card.treino-modal .metricas,
+    .detalhe-card.treino-modal .metricas-modal{
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    .detalhe-card.treino-modal .metrica,
+    .detalhe-card.treino-modal .metrica-modal{
+        width: 100% !important;
+        padding: 14px !important;
+        box-sizing: border-box !important;
+    }
+
+    .detalhe-card.treino-modal .metrica h2,
+    .detalhe-card.treino-modal .metrica-modal h3{
+        font-size: 26px !important;
+    }
+
+    .detalhe-card.treino-modal .info-grid,
+    .detalhe-card.treino-modal .info-grid-modal{
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+
+    .detalhe-card.treino-modal .info-box,
+    .detalhe-card.treino-modal .info-box-modal,
+    .detalhe-card.treino-modal .observacoes-box,
+    .detalhe-card.treino-modal .observacoes-modal{
+        padding: 14px !important;
+        min-height: auto !important;
+    }
+
+    .detalhe-card.treino-modal .acoes-treino{
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    .detalhe-card.treino-modal .btn-voltar,
+    .detalhe-card.treino-modal .btn-editar,
+    .detalhe-card.treino-modal .btn-excluir{
+        width: 100% !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+    }
+
+}
+.btn-concluir{
+    background: #16a34a;
+
+    color: white;
+
+    border: none;
+
+    padding: 14px 22px;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn-concluir:hover{
+    background: #22c55e;
+
+    transform: translateY(-2px);
 }

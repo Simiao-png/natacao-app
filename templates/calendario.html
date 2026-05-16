@@ -79,7 +79,7 @@
 
                                                     <button
                                                         type="button"
-                                                        class="treino-link {% if treino.status == 'programado' %}treino-programado-arrastavel{% endif %}"
+                                                        class="treino-link {% if treino.status == 'programado' %}programado treino-programado-arrastavel{% endif %}"
 
                                                         {% if treino.status == 'programado' %}
                                                             draggable="true"
@@ -219,10 +219,25 @@
 
             </div>
 
+            {% if treino.status == "programado" %}
+
+            <form action="/concluir-treino/{{ treino.id }}" method="POST">
+
+            <button type="submit" class="btn-concluir">
+                ✅ Concluir treino
+                </button>
+
+            </form>
+
+            {% endif %}
+
             <div class="observacoes-modal">
-                <strong>📝 Observações</strong>
-                <p id="modalObs"></p>
-            </div>
+
+            <strong>📝 Observações</strong>
+
+            <p id="modalObs"></p>
+
+        </div>
 
         </div>
 
